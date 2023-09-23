@@ -15,7 +15,7 @@ const server = Bun.serve({
             return new Response(content.error, { status: 404 });
         }
 
-        return new Response(unwrap(content));
+        return new Response(unwrap(content), { headers: { "Content-Type": "text/html" } });
     },  
 });
 
