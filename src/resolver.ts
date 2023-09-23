@@ -3,11 +3,12 @@ import { Result, err, wrap } from "./result";
 
 export class Resolver {
     static readonly RELAYS = [
-        'wss://relay.damus.io'
+        "wss://nos.lol",
+        "wss://relay.damus.io",
+        "wss://nostr.wine",
     ];
 
     private ndk;
-    private connected = false;
 
     constructor() {
         this.ndk = new NDK({
@@ -24,8 +25,11 @@ export class Resolver {
     }
 
     private async ensureConnected(): Promise<void> {
-        if (this.connected) { return; }
-        await this.ndk.connect();
-        this.connected = true;
+        this.ndk.connect();
+        let timeOut = 50;
+        while (this.ndk.pool.stats().connected < 1) {
+            if (timeOut-- === 0) { throw new Error('timeout connecting to relays'); }
+            await Bun.sleep(100);
+        }
     }
 }
