@@ -14,6 +14,4 @@ Run a development server:
 
 ## Building for production
 
-`docker login ghcr.io -u melari`
-`docker build -t ghcr.io/melari/nostr-gateway:latest .`
-`docker push ghcr.io/melari/nostr-gateway:latest`
+`$ script/build`

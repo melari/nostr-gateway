@@ -1,0 +1,2 @@
+docker buildx build --platform=linux/amd64 -t ghcr.io/melari/nostr-gateway:latest .
+docker push ghcr.io/melari/nostr-gateway:latest
