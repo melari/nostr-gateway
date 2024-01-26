@@ -18,7 +18,7 @@ export class Router {
 
     public async route(): Promise<Result<Route>> {
         const dnsClient = new DnsClient();
-        const rootEventId = await dnsClient.nostr("tagayasu.xyz" || this.url.hostname);
+        const rootEventId = await dnsClient.nostr(this.url.hostname);
         if (!rootEventId) { return err(`${this.url.hostname} does not have nostr dnslink configured.`); }
 
         if (this.url.pathname.startsWith(Router.NOSTR_ROUTE_SIGNAL)) {
