@@ -14,8 +14,6 @@ Run a development server:
 
 ## Building for production
 
-Compile:
-`$ bun build --target=bun ./src/index.ts --outfile=dist/server.js`
-
-Run:
-`$ bun run dist/server.js`
+`docker login ghcr.io -u melari`
+`docker build -t ghcr.io/melari/nostr-gateway:latest .`
+`docker push ghcr.io/melari/nostr-gateway:latest`
